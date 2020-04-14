@@ -1,4 +1,4 @@
-require('./config/config');
+require('../config/config');
 const stripe = require('stripe')( process.env.apiKey);
 stripe.setApiVersion('2020-03-02; oxxo_beta=v1')
 
