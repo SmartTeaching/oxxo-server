@@ -9,6 +9,9 @@ app.use(bodyParser.json());
 app.use(cors())
 app.use('/api', routes);
 
+app.get('/', (req, res) => {
+    res.send('Hello dev.to!');
+  });
 const port = 3001;
 app.listen(port, () => {
     console.log("Listening on port: " + port);
