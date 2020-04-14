@@ -1,9 +1,9 @@
-const stripe = require('stripe')('sk_live_pDGJyorE00KFLDk4Py68I8EY00ZHLMOxEu');
+require('./config/config');
+const stripe = require('stripe')( process.env.apiKey);
 stripe.setApiVersion('2020-03-02; oxxo_beta=v1')
 
 const makePayment= async (req,res) => {
 const {amount}=req.body;
-console.log(amount);
 const monto= addDecimals(amount)
 if (!validateAmount(amount)) {
   return  res.status(406).json({
@@ -30,7 +30,10 @@ try {
   })
 } catch (error) {
   console.log(error);
-  
+  return res.status(503).json({
+    succes:false,
+    error:'Fallo transaccion'
+  })
 }
   
   
